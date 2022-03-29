@@ -57,4 +57,29 @@ class MutantCheckerTest{
 
     }
 
+    @Test
+    fun`matriz de mutante vertical ok`(){
+        val mutantChecker = MutantChecker()
+        assertEquals(true,mutantChecker.isMutant("aaix,axxi,aeee,arrr"))
+        assertEquals(true,mutantChecker.isMutant("caxx,watx,aaee,aarr"))
+        assertEquals(true,mutantChecker.isMutant("caax,wgax,aeae,arar"))
+        assertEquals(true,mutantChecker.isMutant("aaia,axxa,aeea,arra"))
+
+    }
+
+    @Test
+    fun`matriz de NO mutante vertical `(){
+        val mutantChecker = MutantChecker()
+        assertEquals(false,mutantChecker.isMutant("iaix,axxi,aeee,arrr"))
+        assertEquals(false,mutantChecker.isMutant("caxx,witx,aaee,aarr"))
+        assertEquals(false,mutantChecker.isMutant("caax,wgax,ae8e,arar"))
+        assertEquals(false,mutantChecker.isMutant("aaia,axxa,aeea,jr0i"))
+
+    }
+    @Test
+    fun`matriz no es mutante Vertical  2x2 1x1 muy pequeña`(){
+        val mutantChecker = MutantChecker()
+        assertEquals(false,mutantChecker.isMutant("as,xs"))
+        assertEquals(false,mutantChecker.isMutant("s,l"))
+    }
 }

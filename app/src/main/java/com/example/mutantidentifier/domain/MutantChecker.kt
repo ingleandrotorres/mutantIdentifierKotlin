@@ -11,12 +11,13 @@ class MutantChecker {
     var matrix = mutableListOf<List<Char>>()
 
     fun isMutant(adn:String) : Boolean{
-
+        matrix.clear()
         flagIsMutant = false
 
         getAdnMatrix(getRowsOfAdnString(adn))
 
-        verifyHorizontalFeature()
+        //verifyHorizontalFeature() //this method is ok
+        //verifyVerticalFeature()
 
         return flagIsMutant
     }
@@ -93,5 +94,38 @@ class MutantChecker {
     fun setNumOfRows(x : Int){
         this.adnNumRows = x
     }
+
+
+    private fun verifyVerticalFeature() {
+
+        if (flagIsMutant) return // don't verify
+
+        var y = 0
+
+        for(listRow in matrix) {
+            var x = 0
+            var counterLetter = startNumberOfLettersFounded
+
+            for (letter in listRow) {
+                if (y + 3 < matrix.size) { // valida si tiene siguiente posicion para no preguntar por una posicion que no existe  y/o seguir con el algoritmo si no es necesario
+                    if (letter == matrix[y + 1][x] && letter == matrix[y + 2][x] && letter == matrix[y + 3][x] ) {
+                        //counterLetter++
+
+                        //if (counterLetter == NUMBER_CHARACTERS_BECOME_MUTANT) {
+                            flagIsMutant = true
+                            break
+                        //}
+                    } else {
+                        counterLetter = startNumberOfLettersFounded
+                    }
+                }else{
+                    break
+                }
+                x++
+            }
+            y++
+        }
+    }
+
 
 }
