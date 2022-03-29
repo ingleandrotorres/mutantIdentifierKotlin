@@ -16,8 +16,8 @@ class MutantChecker {
 
         getAdnMatrix(getRowsOfAdnString(adn))
 
-        //verifyHorizontalFeature() //this method is ok
-        //verifyVerticalFeature()
+        verifyHorizontalFeature()
+        verifyVerticalFeature()
         verifyDiagonalFeature()
 
         return flagIsMutant
@@ -88,10 +88,6 @@ class MutantChecker {
         return matrix
     }
 
-
-    fun setNumOfColumns(y : Int){
-        this.adnNumColumns = y
-    }
     fun setNumOfRows(x : Int){
         this.adnNumRows = x
     }
@@ -101,9 +97,7 @@ class MutantChecker {
 
         if (flagIsMutant) return
 
-        var y = 0
-
-        for(listRow in matrix) {
+        for((y, listRow) in matrix.withIndex()) {
             var x = 0
 
             for (letter in listRow) {
@@ -117,7 +111,6 @@ class MutantChecker {
                 }
                 x++
             }
-            y++
         }
     }
 
