@@ -18,6 +18,7 @@ class MutantChecker {
 
         //verifyHorizontalFeature() //this method is ok
         //verifyVerticalFeature()
+        verifyDiagonalFeature()
 
         return flagIsMutant
     }
@@ -98,25 +99,42 @@ class MutantChecker {
 
     private fun verifyVerticalFeature() {
 
-        if (flagIsMutant) return // don't verify
+        if (flagIsMutant) return
 
         var y = 0
 
         for(listRow in matrix) {
             var x = 0
-            var counterLetter = startNumberOfLettersFounded
 
             for (letter in listRow) {
                 if (y + 3 < matrix.size) { // valida si tiene siguiente posicion para no preguntar por una posicion que no existe  y/o seguir con el algoritmo si no es necesario
                     if (letter == matrix[y + 1][x] && letter == matrix[y + 2][x] && letter == matrix[y + 3][x] ) {
-                        //counterLetter++
-
-                        //if (counterLetter == NUMBER_CHARACTERS_BECOME_MUTANT) {
                             flagIsMutant = true
                             break
-                        //}
-                    } else {
-                        counterLetter = startNumberOfLettersFounded
+                    }
+                }else{
+                    break
+                }
+                x++
+            }
+            y++
+        }
+    }
+
+    private fun verifyDiagonalFeature() {
+
+        if (flagIsMutant) return
+
+        var y = 0
+
+        for(listRow in matrix) {
+            var x = 0
+
+            for (letter in listRow) {
+                if (y + 3 < matrix.size && x + 3 < listRow.size ) { // valida si tiene siguiente posicion para no preguntar por una posicion que no existe  y/o seguir con el algoritmo si no es necesario
+                    if (letter == matrix[y + 1][x+1] && letter == matrix[y + 2][x+2] && letter == matrix[y + 3][x+3] ) {
+                        flagIsMutant = true
+                        break
                     }
                 }else{
                     break

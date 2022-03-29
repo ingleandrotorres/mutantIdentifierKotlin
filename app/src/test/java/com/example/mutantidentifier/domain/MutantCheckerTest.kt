@@ -82,4 +82,36 @@ class MutantCheckerTest{
         assertEquals(false,mutantChecker.isMutant("as,xs"))
         assertEquals(false,mutantChecker.isMutant("s,l"))
     }
+
+
+    @Test
+    fun`matriz de mutante diagonal ok`(){
+        val mutantChecker = MutantChecker()
+        assertEquals(true,mutantChecker.isMutant("aaix,0axi,ieae,zrra"))
+        assertEquals(true,mutantChecker.isMutant("caxxz,watxz,aaeez,aarrz,qaswe"))
+        assertEquals(true,mutantChecker.isMutant("caax,wgax,aeae,arar"))
+        assertEquals(true,mutantChecker.isMutant("aaia,axxa,aeea,arra"))
+
+    }
+
+    @Test
+    fun`matriz de NO mutante diagonal prueba en diagonal a la derecha`(){
+        val mutantChecker = MutantChecker()
+        assertEquals(false,mutantChecker.isMutant("abcd,efgh,ijkl,mnop"))
+        assertEquals(false,mutantChecker.isMutant("abcde,fghij,klmno,pqrst,uvwxy"))
+        assertEquals(true,mutantChecker.isMutant("0TGCGA,0AGGGC,0TATGT,lGAAGG,pCCCTA,TCACTG")) // g from position 3
+    }
+
+    @Test
+    fun`matriz original de la kata mutante`(){
+        val mutantChecker = MutantChecker()
+        assertEquals(true,mutantChecker.isMutant("ATGCGA,CAGTGC,TTATGT,AGAAGG,CCCCTA,TCACTG"))
+    }
+    @Test
+    fun`matriz original de la kata NO mutante`(){
+        val mutantChecker = MutantChecker()
+        assertEquals(false,mutantChecker.isMutant("ATGCGA,CAGTGC,TTATTT,AGACGG,GCGTCA,TCACTG"))
+    }
+
+
 }
