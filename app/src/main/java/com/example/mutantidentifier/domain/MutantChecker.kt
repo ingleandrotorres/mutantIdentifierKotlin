@@ -2,13 +2,11 @@ package com.example.mutantidentifier.domain
 
 class MutantChecker {
 
-    val NUMBER_CHARACTERS_BECOME_MUTANT = 4
-    val startNumberOfLettersFounded = 1 //  empiezo con con una letra encontrada ya que solo se reciben
-    var flagIsMutant = false
-    var adnNumColumns = 0
-    var adnNumRows = 0
+    private val NUMBER_CHARACTERS_BECOME_MUTANT = 4
+    private val startNumberOfLettersFounded = 1 //  empiezo con con una letra encontrada ya que solo se reciben
+    private var flagIsMutant = false
 
-    var matrix = mutableListOf<List<Char>>()
+    private var matrix = mutableListOf<List<Char>>()
 
     fun isMutant(adn:String) : Boolean{
         matrix.clear()
@@ -53,19 +51,8 @@ class MutantChecker {
         }
     }
 
-    private fun convertAdnStringToMatrix(adn: String){
-
-    }
-    private fun isValidAdnString(adn: String){
-
-        val rows = getRowsOfAdnString(adn)
-        setNumOfRows(rows.size)
-
-
-        val array: Array<String> = adn.toCharArray().map { it.toString() }.toTypedArray()
-    }
-    // eeee,rrrr,2222,ssss = retorna lista de los array
-    fun getRowsOfAdnString(adn:String) : List<String>{
+    //example string = eeee,rrrr,2222,ssss = retorna lista de los array
+    private fun getRowsOfAdnString(adn:String) : List<String>{
 
         if (adn == "")
             return listOf(String())
@@ -73,7 +60,7 @@ class MutantChecker {
         return adn.split(",").map { it -> it.trim() }
     }
 
-    fun getAdnMatrix(listOfEachOfLetters:List<String>): MutableList<List<Char>> {
+    private fun getAdnMatrix(listOfEachOfLetters:List<String>): MutableList<List<Char>> {
 
         for(stringOfLetters in listOfEachOfLetters) {
 
@@ -87,11 +74,6 @@ class MutantChecker {
             }
         return matrix
     }
-
-    fun setNumOfRows(x : Int){
-        this.adnNumRows = x
-    }
-
 
     private fun verifyVerticalFeature() {
 
@@ -118,9 +100,7 @@ class MutantChecker {
 
         if (flagIsMutant) return
 
-        var y = 0
-
-        for(listRow in matrix) {
+        for((y, listRow) in matrix.withIndex()) {
             var x = 0
 
             for (letter in listRow) {
@@ -134,9 +114,6 @@ class MutantChecker {
                 }
                 x++
             }
-            y++
         }
     }
-
-
 }
