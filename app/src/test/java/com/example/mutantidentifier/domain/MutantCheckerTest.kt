@@ -14,7 +14,7 @@ class MutantCheckerTest{
     }
 
     @Test
-    fun`es mutante con una matriz 4 x4 con adn coinsidente `(){
+    fun`es mutante con una matriz 4 x4 con adn Coincidente `(){
         val mutantChecker = MutantChecker()
         assertEquals(true,mutantChecker.isMutant("aaas,ssss,eeee,rrrr"))
         assertEquals(true,mutantChecker.isMutant("aaaaa,sssss,eeeee,rrrrr"))
@@ -113,5 +113,30 @@ class MutantCheckerTest{
         assertEquals(false,mutantChecker.isMutant("ATGCGA,CAGTGC,TTATTT,AGACGG,GCGTCA,TCACTG"))
     }
 
+    @Test
+    fun`cadena no valida`(){
+        val adnString = "axdxx,assd,assd,asas"
+        val mutantChecker = MutantChecker()
+        assertEquals(false,mutantChecker.isValidInput(adnString))
+    }
+
+    @Test
+    fun`cadena no valida diferentes dimenciones`(){
+        val adnString = "axdxx,d,ass,as"
+        val mutantChecker = MutantChecker()
+        assertEquals(false,mutantChecker.isValidInput(adnString))
+    }
+    @Test
+    fun`cadena valida`(){
+        val adnString = "axdx,assd,assd,asas"
+        val mutantChecker = MutantChecker()
+        assertEquals(true,mutantChecker.isValidInput(adnString))
+    }
+    @Test
+    fun`cadena valida 5x5`(){
+        val adnString = "axdxz,assdz,assdz,asasz,qwert"
+        val mutantChecker = MutantChecker()
+        assertEquals(true,mutantChecker.isValidInput(adnString))
+    }
 
 }

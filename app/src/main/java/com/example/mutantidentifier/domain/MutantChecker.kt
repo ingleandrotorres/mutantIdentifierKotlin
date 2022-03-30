@@ -5,6 +5,7 @@ class MutantChecker {
     private val NUMBER_CHARACTERS_BECOME_MUTANT = 4
     private val startNumberOfLettersFounded = 1 //  empiezo con con una letra encontrada ya que solo se reciben
     private var flagIsMutant = false
+    private val minimumCharactersValid = 11
 
     private var matrix = mutableListOf<List<Char>>()
 
@@ -115,5 +116,56 @@ class MutantChecker {
                 x++
             }
         }
+    }
+
+    fun isValidInput(adn: String): Boolean {
+
+        if (verifyCorrectFormat(adn)) return false
+
+        if (verifyMinimumCharactersAllowed(adn)) return false
+
+        if (verifyCharactersAllowed(adn)) return false
+
+        if (verifySameDimention(adn)) return false
+
+        return true
+    }
+
+    private fun verifyCorrectFormat(adn: String): Boolean {
+        if (!adn.contains(","))
+            return true
+        return false
+    }
+
+    private fun verifyMinimumCharactersAllowed(adn: String): Boolean {
+        var andInArray = adn.toCharArray().map { it }
+        if (andInArray.size < minimumCharactersValid)
+            return true
+        return false
+    }
+
+    private fun verifyCharactersAllowed(adn: String): Boolean {
+        //val regex = Regex(pattern = "[^ATGC]")
+        val regex = Regex(pattern = "[ATGC]")
+
+        if (!adn.contains(regex))
+            return true
+        return false
+    }
+
+    private fun verifySameDimention(adn: String): Boolean {
+
+        val rows = adn.split(",")
+
+        if (rows != null && rows[0] != null) {
+            val initialDimension = rows[0].length
+
+            for (y in rows) {
+                val x = y.toCharArray().map { it }
+                if (x.size != initialDimension)
+                    return true
+            }
+        }
+        return false
     }
 }
