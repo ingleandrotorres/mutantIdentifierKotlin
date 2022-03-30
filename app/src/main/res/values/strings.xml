@@ -5,11 +5,18 @@
     <string name="first_fragment_label">First Fragment</string>
     <string name="second_fragment_label">Second Fragment</string>
     <string name="verify">Verificar</string>
+    <string name="show_list">Mostrar Lista</string>
     <string name="previous">Previous</string>
 
-    <string name="hello_first_fragment">Ingrese la cadena de caracteres</string>
-    <string name="label_example_adn"><b><i>Ejemplo:</i></b> ATGCGA,CAGTGC,TTATGT,"AGAAGG,"CCCCTA,"TCACTG</string>
+    <string name="hello_first_fragment">Ingrese la cadena de caracteres para verificar si su ADN es Mutante</string>
+    <string name="label_example_adn"><b><i>Ejemplo:</i></b> ATGCGA,CAGTGC,TTATGT,AGAAGG,CCCCTA,"TCACTG <br> En mayusculas, caracteres permitidos A,T,G,C</br></string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
 
+    <string name="is_mutant">El ADN ingresado es mutante</string>
+    <string name="is_human">El ADN ingresado es humano</string>
+    <string name="error_invalid_format">Ingrese el formato esperado vea el ejemplo</string>
     <string name="hint_write_adn">Ingrese su ADN</string>
+    <string name="adn">ADN:</string>
+
+    <string name="example_adn">ATGCGA,CAGTGC,TTATTT,AGACGG,GCGTCA,TCACTG</string>
 </resources>
