@@ -11,7 +11,7 @@ import com.example.mutantidentifier.databinding.ActivityMainBinding
 import com.google.android.material.snackbar.Snackbar
 import android.text.InputFilter
 import com.example.mutantidentifier.data.models.Adn
-import com.example.mutantidentifier.usecases.Mutant
+import com.example.mutantidentifier.framework.extensions.hideKeyboard
 import com.google.firebase.firestore.FirebaseFirestore
 import java.text.SimpleDateFormat
 import java.util.*
@@ -72,7 +72,10 @@ class MainActivity : AppCompatActivity() {
 
         binding.buttonFirst.setOnClickListener {
 
-            viewModel.verifyIsValidInput(binding.materialTextInputEditTextAdn.text.toString())
+
+            binding.imageViewMutant
+            it.hideKeyboard(this)
+            viewModel.verifyIsValidInput(binding.materialTextInputEditTextAdn.text.toString().replace(" ",""))
             //hideKeyboard(binding.buttonFirst)
         }
         binding.buttonShowList.setOnClickListener {
@@ -83,6 +86,5 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    //private fun hideKeyboard(currentFocus ?: View(view.context))
 
 }
