@@ -29,7 +29,7 @@ class MutantListAdapter(private val data : List<Adn>) : RecyclerView.Adapter<Mut
 
         fun bind(adn : Adn) {
             adnTextView.text = adn.value
-            if (adn.isMutant)image.setImageResource(R.drawable.deadpool2)
+            if (adn.isMutant == true)image.setImageResource(R.drawable.deadpool2)
             else image.setImageResource(R.drawable.human)
         }
     }

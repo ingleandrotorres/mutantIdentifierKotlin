@@ -10,12 +10,18 @@ import com.example.mutantidentifier.R
 import com.example.mutantidentifier.databinding.ActivityMainBinding
 import com.google.android.material.snackbar.Snackbar
 import android.text.InputFilter
+import com.example.mutantidentifier.data.models.Adn
+import com.example.mutantidentifier.usecases.Mutant
+import com.google.firebase.firestore.FirebaseFirestore
+import java.text.SimpleDateFormat
+import java.util.*
 
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     private val viewModel by viewModels<MainActivityViewModel>()
+    var db = FirebaseFirestore.getInstance()
 
 
     private val blockCharacterSet = "atgc,ATGC"
@@ -53,6 +59,12 @@ class MainActivity : AppCompatActivity() {
                 binding.imageViewHuman.visibility = View.VISIBLE
                 Snackbar.make(binding.materialTextInputEditTextAdn, getString(com.example.mutantidentifier.R.string.is_human), Snackbar.LENGTH_LONG).show()
             }
+
+            val currentDateLikeId: String = SimpleDateFormat("yyyy_M_dd_hh_mm_ss").format(Date())
+
+            db.collection("ADN").document(currentDateLikeId).set(
+                Adn(binding.materialTextInputEditTextAdn.text.toString(),it)
+            )
 
         }
 
